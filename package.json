@@ -1,0 +1,35 @@
+{
+  "name": "cloudproject",
+  "version": "1.0.0",
+  "description": "",
+  "homepage": "https://github.com/salsabeelomar/CloudProject#readme",
+  "bugs": {
+    "url": "https://github.com/salsabeelomar/CloudProject/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/salsabeelomar/CloudProject.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/app.js",
+    "dev": "nodemon src/app.js"
+  },
+  "dependencies": {
+    "eslint": "^9.28.0",
+    "eslint-config-prettier": "^10.1.5",
+    "eslint-plugin-prettier": "^5.4.1",
+    "express": "^5.1.0",
+    "mongoose": "^8.15.1",
+    "prettier": "^3.5.3"
+  },
+  "devDependencies": {
+    "compression": "^1.8.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "nodemon": "^3.1.10"
+  }
+}
