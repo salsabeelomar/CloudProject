@@ -1,85 +1,143 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
+
 <head>
-  <meta charset="UTF-8" />
-  <title>Upload Document</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      padding: 40px;
-      max-width: 600px;
-      margin: auto;
-      background-color: #f4f4f4;
-    }
-    h2 {
-      text-align: center;
-    }
-    form {
-      margin-top: 20px;
-      padding: 20px;
-      background: white;
-      border-radius: 8px;
-      box-shadow: 0 0 5px rgba(0,0,0,0.1);
-    }
-    input[type="file"] {
-      margin-bottom: 15px;
-    }
-    button {
-      background-color: #007bff;
-      color: white;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-    #result {
-      margin-top: 20px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>رفع مستندات - نظام إدارة المستندات</title>
+    <!-- Bootstrap 5 RTL -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- التنسيقات المخصصة -->
+    <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
+    <!-- nav   -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="dashboard.html">
+                <i class="fas fa-file-alt me-2"></i>نظام المستندات
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="dashboard.html">
+                            <i class="fas fa-home me-1"></i> الرئيسية
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="upload.html">
+                            <i class="fas fa-upload me-1"></i> رفع مستندات
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="search.html">
+                            <i class="fas fa-search me-1"></i> بحث متقدم
+                        </a>
+                    </li>
+                </ul>
+                <div class="d-flex">
+                    <div class="dropdown">
+                        <button class="btn btn-outline-light dropdown-toggle" type="button" id="userDropdown"
+                            data-bs-toggle="dropdown">
+                            <i class="fas fa-user-circle me-1"></i> noor
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="#"><i class="fas fa-user me-2"></i>الملف الشخصي</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item text-danger" href="#"><i
+                                        class="fas fa-sign-out-alt me-2"></i>تسجيل الخروج</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
 
-  <h2>📤 Upload PDF or DOCX Document</h2>
+    <!-- المحتوى الرئيسي -->
+    <div class="container py-4">
+        <div class="row mb-4">
+            <div class="col-12">
+                <h2 class="fw-bold"><i class="fas fa-upload me-2"></i>رفع مستندات جديدة</h2>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="dashboard.html">الرئيسية</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">رفع مستندات</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
 
-  <form id="uploadForm" enctype="multipart/form-data">
-    <input type="file" name="file" accept=".pdf,.docx" required />
-    <br />
-    <button type="submit">Upload</button>
-  </form>
+        <!-- منطقة رفع الملفات -->
+        <div class="card shadow-sm border-0 mb-4">
+            <div class="card-header bg-white border-0 py-3">
+                <h5 class="mb-0 fw-bold"><i class="fas fa-cloud-upload-alt me-2"></i>اسحب وأسقط الملفات هنا</h5>
+            </div>
+            <div class="card-body">
+                <form action="/upload" class="dropzone" id="documentDropzone">
+                    <div class="dz-message text-center py-5">
+                        <i class="fas fa-file-upload fa-3x text-muted mb-3"></i>
+                        <h5>اسحب وأسقط الملفات هنا للرفع</h5>
+                        <p class="text-muted">أو انقر لاختيار الملفات يدوياً</p>
+                        <button type="button" class="btn btn-primary mt-3">
+                            <i class="fas fa-folder-open me-2"></i>اختيار الملفات
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
 
-  <div id="result"></div>
+        <!-- قائمة الملفات المرفوعة -->
+        <div class="card shadow-sm border-0">
+            <div class="card-header bg-white border-0 d-flex justify-content-between align-items-center py-3">
+                <h5 class="mb-0 fw-bold"><i class="fas fa-list me-2"></i>الملفات المرفوعة</h5>
+                <div class="d-flex">
+                    <button class="btn btn-sm btn-outline-danger me-2" id="clearAllBtn">
+                        <i class="fas fa-trash me-1"></i>حذف الكل
+                    </button>
+                    <button class="btn btn-sm btn-primary" id="uploadAllBtn">
+                        <i class="fas fa-upload me-1"></i>بدء الرفع
+                    </button>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle" id="uploadTable">
+                        <thead>
+                            <tr>
+                                <th width="5%">#</th>
+                                <th width="40%">اسم الملف</th>
+                                <th width="15%">النوع</th>
+                                <th width="15%">الحجم</th>
+                                <th width="15%">الحالة</th>
+                                <th width="10%">إجراءات</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- الملفات المرفوعة تظهر هنا -->
+                            <tr class="d-none" id="noFilesRow">
+                                <td colspan="6" class="text-center text-muted py-4">
+                                    <i class="fas fa-folder-open fa-2x mb-3"></i>
+                                    <p>لا توجد ملفات مرفوعة بعد</p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 
-  <script>
-    const form = document.getElementById('uploadForm');
-    const result = document.getElementById('result');
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const formData = new FormData(form);
-
-      try {
-        const response = await fetch('http://localhost:3000/api/v1/documents/upload', {
-          method: 'POST',
-          body: formData
-        });
-
-        const data = await response.json();
-
-        if (response.ok) {
-          result.innerHTML = `
-            <p style="color:green;">✅ Upload successful!</p>
-            <p><strong>Title:</strong> ${data.document.title}</p>
-            <p><strong>Size:</strong> ${data.document.sizeKB} KB</p>
-            <p><strong>File:</strong> ${data.document.filename}</p>
-          `;
-        } else {
-          result.innerHTML = `<p style="color:red;">❌ ${data.message}</p>`;
-        }
-      } catch (err) {
-        result.innerHTML = `<p style="color:red;">❌ Error uploading file</p>`;
-        console.error(err);
-      }
-    });
-  </script>
 </body>
+
 </html>
