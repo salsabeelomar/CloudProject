@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Classified Documents</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 20px;
+      background-color: #f9f9f9;
+    }
+    h2 {
+      text-align: center;
+    }
+    .category {
+      margin-top: 30px;
+    }
+    .document {
+      background: white;
+      padding: 15px;
+      margin: 10px 0;
+      border-radius: 6px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    }
+  </style>
+</head>
+<body>
+
+  <h2>🗂️ Documents by Category</h2>
+  <div id="results"></div>
+
+  <script>
+    async function fetchCategories() {
+      const res = await fetch('http://localhost:3000/api/v1/documents/categories');
+      const data = await res.json();
+      const results = document.getElementById('results');
+
+      if (!Object.keys(data).length) {
+        results.innerHTML = '<p>No documents found.</p>';
+        return;
+      }
+
+      for (const [category, docs] of Object.entries(data)) {
+        const section = document.createElement('div');
+        section.classList.add('category');
+        section.innerHTML = `<h3>${category}</h3>`;
+
+        docs.forEach(doc => {
+          section.innerHTML += `
+            <div class="document">
+              <h4>${doc.title}</h4>
+              <p><strong>File:</strong> ${doc.filename}</p>
+            </div>
+          `;
+        });
+
+        results.appendChild(section);
+      }
+    }
+
+    fetchCategories();
+  </script>
+
+</body>
+</html>

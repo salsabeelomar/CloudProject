@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Search Documents</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 40px;
+      max-width: 700px;
+      margin: auto;
+      background-color: #f9f9f9;
+    }
+    h2 {
+      text-align: center;
+    }
+    form {
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    input[type="text"] {
+      width: 70%;
+      padding: 10px;
+      font-size: 16px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      margin-left: 10px;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+    .document {
+      padding: 15px;
+      background: white;
+      margin-bottom: 15px;
+      border-radius: 6px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    }
+    .highlight {
+      background-color: yellow;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>🔍 Search Documents</h2>
+
+  <form id="searchForm">
+    <input type="text" id="query" placeholder="Enter keywords..." required />
+    <button type="submit">Search</button>
+  </form>
+
+  <div id="results"></div>
+
+  <script>
+    const form = document.getElementById('searchForm');
+    const results = document.getElementById('results');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const query = document.getElementById('query').value;
+
+      const res = await fetch(`http://localhost:3000/api/v1/documents/search?query=${encodeURIComponent(query)}`);
+      const data = await res.json();
+
+      results.innerHTML = '';
+
+      if (data.length === 0) {
+        results.innerHTML = `<p>❌ No documents found.</p>`;
+        return;
+      }
+
+      data.forEach(doc => {
+        const highlighted = doc.content.replace(
+          new RegExp(query, 'gi'),
+          match => `<span class="highlight">${match}</span>`
+        );
+
+        results.innerHTML += `
+          <div class="document">
+            <h4>${doc.title}</h4>
+            <p>${highlighted.slice(0, 500)}...</p>
+            <p><strong>File:</strong> ${doc.filename}</p>
+          </div>
+        `;
+      });
+    });
+  </script>
+
+</body>
+</html>

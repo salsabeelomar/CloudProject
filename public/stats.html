@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document Statistics</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 40px;
+      max-width: 600px;
+      margin: auto;
+      background-color: #f0f0f0;
+    }
+    h2 {
+      text-align: center;
+    }
+    .stat {
+      background: white;
+      padding: 15px;
+      margin-bottom: 15px;
+      border-radius: 6px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    }
+  </style>
+</head>
+<body>
+
+  <h2>📈 Document Statistics</h2>
+  <div id="stats"></div>
+
+  <script>
+    async function fetchStats() {
+      const res = await fetch('http://localhost:3000/api/v1/documents/stats');
+      const data = await res.json();
+      const container = document.getElementById('stats');
+
+      container.innerHTML = `
+        <div class="stat"><strong>Total Documents:</strong> ${data.total}</div>
+        <div class="stat"><strong>Total Size:</strong> ${data.totalSizeKB} KB</div>
+        <div class="stat"><strongAverage Size:</strong> ${data.averageSizeKB.toFixed(2)} KB</div>
+        <div class="stat"><strong>Categories:</strong> ${Object.keys(data.categories).length}</div>
+      `;
+    }
+
+    fetchStats();
+  </script>
+
+</body>
+</html>
