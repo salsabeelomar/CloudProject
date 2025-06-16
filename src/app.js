@@ -35,8 +35,9 @@ class App {
 }
 
   appListen() {
-    this.#app.listen(process.env.PORT, () => {
-      console.log(`http://localhost:${process.env.PORT}/api/v1/`);
+    const PORT = process.env.PORT || 3000;
+    this.#app.listen(PORT, () => {
+      console.log(`http://localhost:${PORT}/api/v1/`);
     });
   }
 }
