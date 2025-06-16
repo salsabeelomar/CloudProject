@@ -1,1 +1,244 @@
+:root {
+    --primary-color: #3498db;
+    --secondary-color: #2c3e50;
+}
 
+body {
+    background-color: #f8f9fa;
+    font-family: 'Tajawal', sans-serif;
+}
+
+.login-container {
+    max-width: 400px;
+    margin: 100px auto;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.login-header {
+    background-color: var(--secondary-color);
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+.login-body {
+    background-color: white;
+    padding: 30px;
+}
+
+.form-control:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.25rem rgba(52, 152, 219, 0.25);
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+/* تنسيقات لوحة التحكم */
+.stat-card {
+    border-radius: 0.5rem;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.1);
+}
+
+.stat-value {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.stat-label {
+    color: #6c757d;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+.stat-icon {
+    font-size: 2rem;
+    opacity: 0.2;
+}
+
+/* تحسينات الجدول */
+.table {
+    margin-bottom: 0;
+}
+
+.table th {
+    font-weight: 600;
+    background-color: #f8f9fa;
+}
+
+/* تأثيرات الأزرار */
+.btn-outline-primary {
+    transition: all 0.3s;
+}
+
+.btn-outline-primary:hover {
+    background-color: var(--primary);
+    color: white;
+}
+
+/* االشاشات الصغيرة */
+@media (max-width: 768px) {
+    .stat-card {
+        margin-bottom: 1rem;
+    }
+
+    .table-responsive {
+        border: 0;
+    }
+}
+
+
+.dropzone {
+    border: 2px dashed #dee2e6 !important;
+    border-radius: 0.5rem;
+    background: #f8f9fa;
+    min-height: 200px;
+    transition: all 0.3s;
+}
+
+.dropzone:hover {
+    border-color: var(--primary) !important;
+    background: rgba(52, 152, 219, 0.05);
+}
+
+.dz-message {
+    color: #6c757d;
+}
+
+.dz-preview {
+    border-radius: 0.5rem;
+    margin: 0.5rem;
+    padding: 0.5rem;
+    background: white;
+    border: 1px solid #dee2e6;
+}
+
+.dz-progress {
+    height: 5px;
+    margin-top: 0.5rem;
+    background: #e9ecef;
+}
+
+.dz-upload {
+    display: block;
+    height: 100%;
+    background: var(--primary);
+    border-radius: 5px;
+    width: 0%;
+    transition: width 0.3s;
+}
+
+/* تنسيقات الجدول */
+#uploadTable th {
+    font-weight: 600;
+    background-color: #f8f9fa;
+}
+
+.file-icon {
+    font-size: 1.2rem;
+    margin-left: 0.5rem;
+}
+
+.file-icon.pdf {
+    color: #e74c3c;
+}
+
+.file-icon.word {
+    color: #2c3e50;
+}
+
+.status-badge {
+    font-size: 0.8rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+}
+
+.status-uploading {
+    background-color: #fff3cd;
+    color: #856404;
+}
+
+.status-success {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.status-error {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+/* تنسيقات صفحة البحث */
+#searchResults {
+    min-height: 300px;
+}
+
+.search-result-item {
+    border-bottom: 1px solid #eee;
+    padding: 1.5rem 0;
+    transition: all 0.3s;
+}
+
+.search-result-item:hover {
+    background-color: #f8f9fa;
+}
+
+.search-result-item:last-child {
+    border-bottom: none;
+}
+
+.result-title {
+    color: var(--primary);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.result-meta {
+    font-size: 0.9rem;
+    color: #6c757d;
+    margin-bottom: 0.5rem;
+}
+
+.result-meta span {
+    margin-left: 1rem;
+}
+
+.result-excerpt {
+    color: #495057;
+    line-height: 1.7;
+}
+
+.highlight {
+    background-color: #fff3cd;
+    padding: 0.1rem 0.25rem;
+    border-radius: 0.25rem;
+    font-weight: 500;
+}
+
+.file-type-badge {
+    font-size: 0.8rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    background-color: #e9ecef;
+    color: #495057;
+}
+
+/* التكيف مع الشاشات الصغيرة */
+@media (max-width: 768px) {
+    #searchForm .row>div {
+        margin-bottom: 1rem;
+    }
+
+    .search-result-item {
+        padding: 1rem 0;
+    }
+}
